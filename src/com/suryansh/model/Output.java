@@ -31,19 +31,19 @@ public class Output {
         this.playerBoard = game.populatePlayerBoard();
     }
 
-    private void displayBoards(char[][] array) {
-        for (int i = 0; i < array.toString().length(); ++i) {
-            for (int j = 0; j < array.toString().length(); ++j) {
+    private void displayBoard(char[][] array) {
+        for (int i = 0; i < this.size; ++i) {
+            for (int j = 0; j < this.size; ++j) {
                 System.out.printf("%s ", array[i][j]);
             }
-            System.out.println("%n");
+            System.out.printf("%n");
         }
     }
 
     public void displayBoards() {
-        displayBoards(this.playerBoard2);
-        System.out.println("%n%n");
-        displayBoards(this.playerBoard);
+        displayBoard(this.playerBoard2);
+        System.out.printf("%n___________%n");
+        displayBoard(this.playerBoard);
     }
 
     public void promptForAttack() {
@@ -57,11 +57,12 @@ public class Output {
         } else {
             System.out.println("Oops, you missed.");
         }
-        System.out.println("CPU's turn: ");
+
+        System.out.println("CPU's turn");
         if (game.cpuAttack()) {
             System.out.println("CPU got a hit!");
         } else {
-            System.out.println("CPU missed.");
+            System.out.println("CPU Missed");
         }
     }
 }
