@@ -160,7 +160,7 @@ public class Game {
         }
 
         if (isAlreadyAttacked(this.cpuBoard, coordX, coordY)) {
-            throw new IllegalArgumentException("The coordinates entered have already been used. Enter new coords. ");
+            throw new IllegalArgumentException("The coordinates entered are not valid! Enter new coords. ");
         }
 
         if (coordX >= getSize() || coordY >= getSize()) {

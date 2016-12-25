@@ -1,5 +1,6 @@
 package com.suryansh.model;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Output {
@@ -46,13 +47,17 @@ public class Output {
 
     public void playerAttack() {
         System.out.println("--->Enter a row: ");
-        int row = scanner.nextInt();
-        System.out.println("--->Enter a column: ");
-        int col = scanner.nextInt();
-        if (game.playerAttack(row, col)) {
-            System.out.println("You got a hit!");
-        } else {
-            System.out.println("Oops. You missed.");
+        try {
+            int row = scanner.nextInt();
+            System.out.println("--->Enter a column: ");
+            int col = scanner.nextInt();
+            if (game.playerAttack(row, col)) {
+                System.out.println("You got a hit!");
+            } else {
+                System.out.println("Oops. You missed.");
+            }
+        } catch (InputMismatchException im) {
+            System.out.printf("Please enter an integer!%n");
         }
     }
 
