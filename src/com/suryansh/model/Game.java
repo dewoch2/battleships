@@ -8,6 +8,7 @@ package com.suryansh.model;
     Player's ships should be with 'P'
 
     Attacked areas are declared with '#'
+    Missed areas are declared with '$'
  */
 
 import java.util.Random;
@@ -17,7 +18,7 @@ public class Game {
     private char[][] playerBoard;
     private char[][] cpuBoard;
     private char[][] playerBoard2;
-    private int size = 7;
+    private int size = 10;
     private int missed;
     /*private int[] intDir1;
     private int[] intDir2;*/
@@ -77,11 +78,11 @@ public class Game {
         int ranIntX;
         int ranIntY;
 
-        int i = 15;
+        int i = 10;
 
         while (i > 0) {
-            ranIntX = random.nextInt(15);
-            ranIntY = random.nextInt(15);
+            ranIntX = random.nextInt(10);
+            ranIntY = random.nextInt(10);
 
             if (this.playerBoard[ranIntX][ranIntY] != 'P') {
                 this.playerBoard[ranIntX][ranIntY] = 'P';
@@ -95,17 +96,16 @@ public class Game {
         int ranIntX;
         int ranIntY;
 
-        int i = 15;
+        int i = 10;
 
         while (i > 0) {
-            ranIntX = random.nextInt(15);
-            ranIntY = random.nextInt(15);
+            ranIntX = random.nextInt(10);
+            ranIntY = random.nextInt(10);
 
             if (this.cpuBoard[ranIntX][ranIntY] != 'P') {
                 this.cpuBoard[ranIntX][ranIntY] = 'P';
                 --i;
             }
-            i += 0;
         }
         return this.cpuBoard;
     }
@@ -114,6 +114,8 @@ public class Game {
         if (this.cpuBoard[coordX][coordY] == 'C') {
             this.playerBoard2[coordX][coordY] = '#';
             return true;
+        } else if (this.cpuBoard[coordX][coordY] == 'n') {
+            this.cpuBoard[coordX][coordY] = '$';
         }
         ++this.missed;
         return false;
@@ -123,6 +125,8 @@ public class Game {
         if (this.playerBoard[coordX][coordY] == 'P') {
             this.playerBoard[coordX][coordY] = '#';
             return true;
+        } else if (this.playerBoard[coordX][coordY] == 'n') {
+            this.playerBoard[coordX][coordY] = '$';
         }
         return false;
     }
@@ -139,22 +143,15 @@ public class Game {
     }
 
     public boolean cpuAttack() {
-        int ranIntX = random.nextInt(7);
-        int ranIntY = random.nextInt(7);
-        boolean isAcceptable = false;
+        int ranIntX;
+        int ranIntY;
 
         do {
-            if (!isIncorrect(ranIntX, ranIntY) || !isAlreadyAttacked(this.playerBoard, ranIntX, ranIntY)) {
-                if (isPlayerHit(ranIntX, ranIntY)) {
-                    isAcceptable = true;
-                }
-            }
-        } while (!isAcceptable);
+            ranIntX = random.nextInt(10);
+            ranIntY = random.nextInt(10);
+        } while (isAlreadyAttacked(this.playerBoard, ranIntX, ranIntY));
 
-        if (isAcceptable) {
-            return true;
-        }
-        return false;
+        return isPlayerHit(ranIntX, ranIntX);
     }
 
     public boolean playerAttack(int coordX, int coordY) {
@@ -167,7 +164,7 @@ public class Game {
     }
 
     private boolean isAlreadyAttacked(char[][] array, int coordX, int coordY) {
-        if (array[coordX][coordY] == '#') {
+        if (array[coordX][coordY] == '#' || array[coordX][coordY] == '$') {
             return true;
         }
         return false;
