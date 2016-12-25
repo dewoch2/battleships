@@ -21,7 +21,7 @@ public class Game {
     }
 
     private boolean checkEntries(int coordX, int coordY) {
-        if ()
+        if
     }
     public boolean attack(int coordX, int coordY) {
 
