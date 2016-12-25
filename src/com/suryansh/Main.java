@@ -3,7 +3,7 @@ package com.suryansh;
 import com.suryansh.model.Game;
 import com.suryansh.model.Output;
 
-//FIXME: When any exception is encountered, player's turn is skipped.
+//FIXME: When any exception other that IllegalArgumentException is encountered, player's turn is skipped.
 //FIXME: When a character is entered instead of an integer, an infinite loop is executed.
 public class Main {
 
