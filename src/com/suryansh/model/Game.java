@@ -115,7 +115,7 @@ public class Game {
             this.playerBoard2[coordX][coordY] = '#';
             return true;
         } else if (this.cpuBoard[coordX][coordY] == 'n') {
-            this.cpuBoard[coordX][coordY] = '$';
+            this.playerBoard2[coordX][coordY] = '$';
         }
         ++this.missed;
         return false;
@@ -155,12 +155,19 @@ public class Game {
     }
 
     public boolean playerAttack(int coordX, int coordY) {
-        if (!isIncorrect(coordX, coordY) || !isAlreadyAttacked(this.cpuBoard, coordX, coordY)) {
-            if (isCpuHit(coordX, coordY)) {
-                return true;
-            }
+        if (isIncorrect(coordX, coordY)) {
+            throw new IllegalArgumentException("The coordinates entered are not valid! Enter new coords. ");
         }
-        return false;
+
+        if (isAlreadyAttacked(this.cpuBoard, coordX, coordY)) {
+            throw new IllegalArgumentException("The coordinates entered have already been used. Enter new coords. ");
+        }
+
+        if (coordX >= getSize() || coordY >= getSize()) {
+            throw new ArrayIndexOutOfBoundsException("message");
+        }
+
+        return isCpuHit(coordX, coordY);
     }
 
     private boolean isAlreadyAttacked(char[][] array, int coordX, int coordY) {

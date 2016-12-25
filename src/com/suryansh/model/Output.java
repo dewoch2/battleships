@@ -46,8 +46,7 @@ public class Output {
         displayBoard(this.playerBoard);
     }
 
-    public void promptForAttack() {
-        System.out.println("It's your turn!");
+    public void playerAttack() {
         System.out.println("--->Enter a row: ");
         int row = scanner.nextInt();
         System.out.println("--->Enter a column: ");
@@ -55,14 +54,16 @@ public class Output {
         if (game.playerAttack(row, col)) {
             System.out.println("You got a hit!");
         } else {
-            System.out.println("Oops, you missed.");
+            System.out.println("Oops. You missed.");
         }
+    }
 
-        System.out.println("CPU's turn");
+    public void cpuAttack() {
+        System.out.println("CPU's turn!");
         if (game.cpuAttack()) {
             System.out.println("CPU got a hit!");
         } else {
-            System.out.println("CPU Missed");
+            System.out.println("CPU missed");
         }
     }
 }
