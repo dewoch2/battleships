@@ -186,4 +186,13 @@ public class Game {
 
         return false;
     }
+
+    public boolean isWonByCpu() {
+        String playerBoard = this.playerBoard.toString();
+
+        if (playerBoard.indexOf('P') == -1) {
+            return true;
+        }
+        return false;
+    }
 }

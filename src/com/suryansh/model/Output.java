@@ -17,8 +17,6 @@ public class Output {
         this.cpuBoard = new char[this.size][this.size];
         this.playerBoard2 = new char[this.size][this.size];
         this.scanner = new Scanner(System.in);
-
-
     }
 
     public void declareBoards() {

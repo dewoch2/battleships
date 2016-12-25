@@ -25,6 +25,6 @@ public class Main {
             }
 
             output.cpuAttack();
-        } while (!game.isWonByPlayer() || game.getRemainingTries() != 0);
+        } while (!game.isWonByPlayer() || !game.isWonByCpu() || game.getRemainingTries() != 0);
     }
 }
