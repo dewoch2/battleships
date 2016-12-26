@@ -11,6 +11,8 @@ package com.suryansh.model;
     Missed areas are declared with '$'
  */
 
+//FIXME:ss isWonByPlayer/CPU method should both be false if their own boards do not have any '$' characters.
+
 import java.util.Random;
 
 public class Game {
