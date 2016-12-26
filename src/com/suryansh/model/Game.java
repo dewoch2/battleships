@@ -135,11 +135,7 @@ public class Game {
         char x = (char) coordX;
         char y = (char) coordY;
 
-        if (Character.isLetter(x) || Character.isLetter(y) || coordX > size || coordY > size || coordX < 0 || coordY < 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return Character.isLetter(x) || Character.isLetter(y) || coordX > size || coordY > size || coordX < 0 || coordY < 0;
     }
 
     public boolean cpuAttacks() {
@@ -156,11 +152,11 @@ public class Game {
 
     public boolean playerAttacks(int coordX, int coordY) {
         if (isIncorrect(coordX, coordY)) {
-            throw new IllegalArgumentException("The coordinates entered are not valid! Enter new coords. ");
+            throw new IllegalArgumentException("The coordinates entered are not valid! Enter new coords: ");
         }
 
         if (isAlreadyAttacked(this.cpuBoard, coordX, coordY)) {
-            throw new IllegalArgumentException("The coordinates entered are not valid! Enter new coords. ");
+            throw new IllegalArgumentException("The coordinates entered are not valid! Enter new coords: ");
         }
 
         if (coordX >= getSize() || coordY >= getSize()) {
@@ -171,27 +167,18 @@ public class Game {
     }
 
     private boolean isAlreadyAttacked(char[][] array, int coordX, int coordY) {
-        if (array[coordX][coordY] == '#' || array[coordX][coordY] == '$') {
-            return true;
-        }
-        return false;
+        return array[coordX][coordY] == '#' || array[coordX][coordY] == '$';
     }
 
     public boolean isWonByPlayer() {
         String cpuBoard = this.cpuBoard.toString();
 
-        if (cpuBoard.indexOf('C') == -1) {
-            return true;
-        }
-        return false;
+        return cpuBoard.indexOf('C') == -1;
     }
 
     public boolean isWonByCpu() {
         String playerBoard = this.playerBoard.toString();
 
-        if (playerBoard.indexOf('P') == -1) {
-            return true;
-        }
-        return false;
+        return playerBoard.indexOf('P') == -1;
     }
 }
