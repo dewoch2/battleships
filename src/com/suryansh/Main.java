@@ -3,6 +3,8 @@ package com.suryansh;
 import com.suryansh.model.Game;
 import com.suryansh.model.Output;
 
+import java.util.concurrent.TimeUnit;
+
 //FIXME: When any exception other that IllegalArgumentException is encountered, player's turn is skipped.
 //FIXME: When a character is entered instead of an integer, an infinite loop is executed.
 public class Main {
@@ -20,13 +22,17 @@ public class Main {
             System.out.printf(" You have %d tries remaining!%n%n", game.getRemainingTries());
             try {
                 output.playerAttacks();
+                TimeUnit.SECONDS.sleep(2);
                 output.cpuAttacks();
+                TimeUnit.SECONDS.sleep(2);
                 System.out.printf("%n%n");
             } catch (IllegalArgumentException e) {
                 System.out.printf("%s%n", e.getMessage());
                 break;
             } catch (ArrayIndexOutOfBoundsException ai) {
                 System.out.printf("One or more of the coordinates entered are larger than the board. Enter new coords. %n");
+            } catch (InterruptedException ie) {
+                System.out.println("Please do not interrupt the delay!");
             }
         } while (!game.isWonByPlayer() || !game.isWonByCpu() || game.getRemainingTries() != 0);
 
