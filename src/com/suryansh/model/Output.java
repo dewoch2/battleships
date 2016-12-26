@@ -73,6 +73,8 @@ public class Output {
     public void outcome() {
         if (game.isWonByCpu()) {
             System.out.println("Good try, but CPU won :(");
+        } else if (game.getRemainingTries() == 0) {
+            System.out.println("Oh no, you ran out of tries!");
         } else {
             System.out.println("You won!");
         }

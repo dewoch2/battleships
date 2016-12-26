@@ -28,9 +28,13 @@ public class Main {
                 System.out.printf("%n%n");
             } catch (IllegalArgumentException e) {
                 System.out.printf("%s%n", e.getMessage());
-                break;
+                try {
+                    TimeUnit.SECONDS.sleep(2);
+                } catch (InterruptedException e1) {
+                    System.out.println("Delay interrupted!");
+                }
             } catch (ArrayIndexOutOfBoundsException ai) {
-                System.out.printf("One or more of the coordinates entered are larger than the board. Enter new coords. %n");
+                System.out.printf("One or more of the coordinates entered are larger than the board. Enter new coords: %n");
             } catch (InterruptedException ie) {
                 System.out.println("Please do not interrupt the delay!");
             }
