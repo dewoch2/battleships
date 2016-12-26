@@ -17,15 +17,19 @@ public class Main {
             output.displayBoards();
 
             System.out.println("It's your turn!");
+            System.out.printf(" You have %d tries remaining!%n%n", game.getRemainingTries());
             try {
-                output.playerAttack();
-                output.cpuAttack();
+                output.playerAttacks();
+                output.cpuAttacks();
                 System.out.printf("%n%n");
             } catch (IllegalArgumentException e) {
                 System.out.printf("%s%n", e.getMessage());
+                break;
             } catch (ArrayIndexOutOfBoundsException ai) {
                 System.out.printf("One or more of the coordinates entered are larger than the board. Enter new coords. %n");
             }
         } while (!game.isWonByPlayer() || !game.isWonByCpu() || game.getRemainingTries() != 0);
+
+        output.outcome();
     }
 }

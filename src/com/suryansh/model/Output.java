@@ -45,13 +45,13 @@ public class Output {
         displayBoard(this.playerBoard);
     }
 
-    public void playerAttack() {
-        System.out.println("--->Enter a row: ");
+    public void playerAttacks() {
         try {
+            System.out.println("--->Enter a row: ");
             int row = scanner.nextInt();
             System.out.println("--->Enter a column: ");
             int col = scanner.nextInt();
-            if (game.playerAttack(row, col)) {
+            if (game.playerAttacks(row, col)) {
                 System.out.println("You got a hit!");
             } else {
                 System.out.println("Oops. You missed.");
@@ -61,12 +61,20 @@ public class Output {
         }
     }
 
-    public void cpuAttack() {
+    public void cpuAttacks() {
         System.out.println("CPU's turn!");
-        if (game.cpuAttack()) {
+        if (game.cpuAttacks()) {
             System.out.println("CPU got a hit!");
         } else {
             System.out.println("CPU missed");
+        }
+    }
+
+    public void outcome() {
+        if (game.isWonByCpu()) {
+            System.out.println("Good try, but CPU won :(");
+        } else {
+            System.out.println("You won!");
         }
     }
 }

@@ -11,8 +11,6 @@ package com.suryansh.model;
     Missed areas are declared with '$'
  */
 
-//FIXME:ss isWonByPlayer/CPU method should both be false if their own boards do not have any 'n' characters.
-
 import java.util.Random;
 
 public class Game {
@@ -36,7 +34,7 @@ public class Game {
     }
 
     public int getRemainingTries() {
-        return MAX_TRIES - missed;
+        return (MAX_TRIES - missed) + 5;
     }
 
     public int getSize() {
@@ -144,7 +142,7 @@ public class Game {
         }
     }
 
-    public boolean cpuAttack() {
+    public boolean cpuAttacks() {
         int ranIntX;
         int ranIntY;
 
@@ -156,7 +154,7 @@ public class Game {
         return isPlayerHit(ranIntX, ranIntX);
     }
 
-    public boolean playerAttack(int coordX, int coordY) {
+    public boolean playerAttacks(int coordX, int coordY) {
         if (isIncorrect(coordX, coordY)) {
             throw new IllegalArgumentException("The coordinates entered are not valid! Enter new coords. ");
         }
@@ -185,7 +183,6 @@ public class Game {
         if (cpuBoard.indexOf('C') == -1) {
             return true;
         }
-
         return false;
     }
 
